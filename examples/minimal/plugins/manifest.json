@@ -1,0 +1,15 @@
+{
+  "interface_version": "0.1",
+  "plugins": [
+    {
+      "id": "fixture.exact-arithmetic",
+      "module_file": "exact_arithmetic.py",
+      "class": "ExactArithmeticPlugin",
+      "layer": "L5",
+      "role": "evidence_adapter",
+      "evidence_types": ["construction_witness"],
+      "implementation_status": "executable"
+    }
+  ]
+}
+

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://proofaudit.org/schemas/plugin-manifest.v0.1.schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["interface_version", "plugins"],
+  "properties": {
+    "interface_version": {"const": "0.1"},
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "class", "layer", "role", "implementation_status"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "module": {"type": "string", "minLength": 1},
+          "module_file": {"type": "string", "minLength": 1},
+          "class": {"type": "string", "minLength": 1},
+          "layer": {"type": "string", "minLength": 1},
+          "role": {"enum": ["universal_gate", "routing_seam", "evidence_adapter"]},
+          "evidence_types": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "implementation_status": {"enum": ["executable", "placeholder"]}
+        },
+        "oneOf": [
+          {"required": ["module"], "not": {"required": ["module_file"]}},
+          {"required": ["module_file"], "not": {"required": ["module"]}}
+        ]
+      }
+    }
+  }
+}
+

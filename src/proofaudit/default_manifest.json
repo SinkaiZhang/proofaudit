@@ -1,0 +1,16 @@
+{
+  "interface_version": "0.1",
+  "plugins": [
+    {"id": "source.capture", "module": "proofaudit.builtin", "class": "SourceCapturePlugin", "layer": "L0", "role": "universal_gate", "implementation_status": "executable"},
+    {"id": "claim.normalize", "module": "proofaudit.builtin", "class": "ClaimNormalizePlugin", "layer": "L1", "role": "universal_gate", "implementation_status": "executable"},
+    {"id": "semantic.bridge", "module": "proofaudit.builtin", "class": "SemanticBridgePlugin", "layer": "L2", "role": "universal_gate", "implementation_status": "executable"},
+    {"id": "obligation.coverage", "module": "proofaudit.builtin", "class": "ObligationCoveragePlugin", "layer": "L3", "role": "universal_gate", "implementation_status": "executable"},
+    {"id": "dependency.trust", "module": "proofaudit.builtin", "class": "DependencyTrustPlugin", "layer": "L4", "role": "universal_gate", "implementation_status": "executable"},
+    {"id": "evidence.route", "module": "proofaudit.builtin", "class": "EvidenceRoutePlugin", "layer": "L5", "role": "routing_seam", "implementation_status": "executable"},
+    {"id": "lean.lake-replay", "module": "proofaudit.adapters.lean_lake", "class": "LeanLakeReplayPlugin", "layer": "L5", "role": "evidence_adapter", "evidence_types": ["formal_kernel"], "implementation_status": "executable"},
+    {"id": "lean.comparator", "module": "proofaudit.adapters.lean_comparator", "class": "LeanComparatorPlugin", "layer": "L5", "role": "evidence_adapter", "evidence_types": ["formal_kernel"], "implementation_status": "executable"},
+    {"id": "witness.audit", "module": "proofaudit.builtin", "class": "WitnessAuditPlugin", "layer": "L6", "role": "universal_gate", "implementation_status": "executable"},
+    {"id": "reproduction.audit", "module": "proofaudit.builtin", "class": "ReproductionAuditPlugin", "layer": "L7", "role": "universal_gate", "implementation_status": "executable"},
+    {"id": "governance.final", "module": "proofaudit.builtin", "class": "GovernancePlugin", "layer": "L8", "role": "universal_gate", "implementation_status": "executable"}
+  ]
+}

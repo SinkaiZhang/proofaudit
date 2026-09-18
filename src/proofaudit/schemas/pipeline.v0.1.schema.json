@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://proofaudit.org/schemas/pipeline.v0.1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "name", "description", "strict", "timeout_seconds", "assurance_requirements", "stages"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "name": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "strict": {"const": true},
+    "timeout_seconds": {"type": "integer", "minimum": 1},
+    "assurance_requirements": {
+      "type": "object",
+      "propertyNames": {"enum": ["formal", "semantic", "source", "falsification", "human_independence"]},
+      "additionalProperties": {"enum": ["UNASSESSED", "ASSERTED", "VERIFIED", "INDEPENDENT"]}
+    },
+    "stages": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "plugin", "required"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "plugin": {"type": "string", "minLength": 1},
+          "required": {"type": "boolean"},
+          "skip_on_required_failure": {"type": "boolean"},
+          "config": {"type": "object"}
+        }
+      }
+    }
+  }
+}

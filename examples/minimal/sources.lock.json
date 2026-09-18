@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "case_id": "minimal-exact-arithmetic",
+  "sources": [
+    {
+      "id": "statement",
+      "path": "source.md",
+      "sha256": "CB2DC70408E9E56FD2E07A520510D7F616C2F228A488971D9BF53E11155BF6CB",
+      "media_type": "text/markdown",
+      "redistributable": true,
+      "license": "CC0-1.0"
+    }
+  ]
+}

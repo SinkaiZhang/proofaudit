@@ -1,0 +1,4 @@
+- insert:
+    - id: proofaudit-runner
+      name: proofaudit-dsh-plugin
+

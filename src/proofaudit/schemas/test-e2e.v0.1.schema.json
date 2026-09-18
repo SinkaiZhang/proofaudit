@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://proofaudit.org/schemas/test-e2e.v0.1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "materializer",
+    "governance_stage",
+    "expected_assurance_levels",
+    "expected_stage_closures"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "mode": {"const": "TEST_ONLY_NON_ADJUDICATIVE"},
+    "materializer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["module", "callable"],
+      "properties": {
+        "module": {"$ref": "#/$defs/path"},
+        "callable": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"}
+      }
+    },
+    "governance_stage": {"type": "string", "minLength": 1},
+    "expected_assurance_levels": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "enum": ["UNASSESSED", "ASSERTED", "CORROBORATED", "VERIFIED", "INDEPENDENT"]
+      }
+    },
+    "expected_stage_closures": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "$defs": {
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:[\\\\/])(?![\\\\/]).+"
+    }
+  }
+}

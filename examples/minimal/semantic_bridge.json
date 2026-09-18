@@ -1,0 +1,8 @@
+{
+  "schema_version": "0.1",
+  "public_statement": "Two plus two equals four over the integers.",
+  "formal_statement": "2 + 2 = 4 in Python integer arithmetic.",
+  "status": "PARTIAL",
+  "limitations": ["This fixture demonstrates the runtime contract, not a Lean kernel proof."]
+}
+

@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "proofaudit"
+version = "0.1.0"
+description = "Fail-closed, evidence-routed auditing for mathematical proof claims"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "ProofAudit Contributors" }]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+  "jsonschema>=4.22,<5",
+  "PyYAML>=6.0,<7",
+]
+
+[project.urls]
+Homepage = "https://github.com/SinkaiZhang/proofaudit"
+Repository = "https://github.com/SinkaiZhang/proofaudit"
+Issues = "https://github.com/SinkaiZhang/proofaudit/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.7,<1", "mypy>=1.11,<2"]
+
+[project.scripts]
+proofaudit = "proofaudit.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/proofaudit"]
+
+[tool.hatch.build]
+include = [
+  "src/proofaudit/**/*.py",
+  "src/proofaudit/**/*.json",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

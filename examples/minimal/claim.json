@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "claim_id": "minimal-exact-arithmetic",
+  "title": "Exact arithmetic fixture",
+  "statement": "Two plus two equals four over the integers.",
+  "domain": "elementary arithmetic",
+  "assumptions": [],
+  "conclusion_type": "theorem",
+  "sources": ["statement"],
+  "semantic_bridge": {"path": "semantic_bridge.json", "status": "PARTIAL"},
+  "obligation_graph": {
+    "coverage_status": "COMPLETE",
+    "completeness_note": "A deliberately small redistributable smoke fixture.",
+    "nodes": [
+      {
+        "id": "fixture.two-plus-two",
+        "type": "theorem",
+        "statement": "2 + 2 = 4 in the integers.",
+        "required": true,
+        "evidence_types": ["construction_witness"],
+        "source_refs": ["statement#line-1"]
+      }
+    ],
+    "edges": []
+  },
+  "dependencies": []
+}
+

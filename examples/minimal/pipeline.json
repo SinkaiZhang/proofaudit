@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "name": "minimal-exact-arithmetic",
+  "description": "Small end-to-end fixture for the public adapter contract.",
+  "strict": true,
+  "timeout_seconds": 60,
+  "assurance_requirements": {"source": "VERIFIED", "falsification": "VERIFIED"},
+  "stages": [
+    {"id": "L0-source", "plugin": "source.capture", "required": true},
+    {"id": "L1-claim", "plugin": "claim.normalize", "required": true},
+    {"id": "L2-semantics", "plugin": "semantic.bridge", "required": true},
+    {"id": "L3-obligations", "plugin": "obligation.coverage", "required": true},
+    {"id": "L4-dependencies", "plugin": "dependency.trust", "required": true, "config": {"allow_empty": true}},
+    {"id": "L5-routing", "plugin": "evidence.route", "required": true, "config": {"routes": {"construction_witness": {"mode": "all", "adapters": ["fixture.exact-arithmetic"]}}}},
+    {"id": "L5-exact", "plugin": "fixture.exact-arithmetic", "required": true},
+    {"id": "L6-witness", "plugin": "witness.audit", "required": true},
+    {"id": "L7-reproduction", "plugin": "reproduction.audit", "required": true, "config": {"minimum_distinct_adapters": 1}},
+    {"id": "L8-decision", "plugin": "governance.final", "required": true}
+  ]
+}
+

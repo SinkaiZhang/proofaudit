@@ -1,0 +1,11 @@
+{
+  "name": "proofaudit-dsh-plugin",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.js",
+  "description": "Optional DeepSeek Harness bridge for the standalone ProofAudit CLI",
+  "files": ["index.js", "cordis.patch.yml"],
+  "dsh": {"bundle": {"patch": "./cordis.patch.yml"}},
+  "peerDependencies": {"@deepseek-ai/dsh-tools": ">=0.1.0-rc.7 <0.2.0"}
+}
+

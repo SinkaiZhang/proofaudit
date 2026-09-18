@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "mode": "TEST_ONLY_NON_ADJUDICATIVE",
+  "materializer": {
+    "module": "test_fixture.py",
+    "callable": "materialize"
+  },
+  "governance_stage": "L8-decision",
+  "expected_assurance_levels": {
+    "source": "VERIFIED",
+    "falsification": "VERIFIED"
+  },
+  "expected_stage_closures": {
+    "L5-exact": {
+      "construction_witness": 1
+    }
+  }
+}

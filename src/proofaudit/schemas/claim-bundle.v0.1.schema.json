@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://proofaudit.org/schemas/claim-bundle.v0.1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "claim_id", "title", "statement", "domain", "assumptions", "conclusion_type", "sources", "semantic_bridge", "obligation_graph", "dependencies"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "claim_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+    "title": {"type": "string", "minLength": 1},
+    "statement": {"type": "string", "minLength": 1},
+    "domain": {"type": "string", "minLength": 1},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "conclusion_type": {"enum": ["theorem", "counterexample", "construction", "lower_bound", "upper_bound", "equivalence", "classification"]},
+    "sources": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "semantic_bridge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "status"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "status": {"enum": ["UNVERIFIED", "PARTIAL", "VERIFIED"]},
+        "sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"}
+      }
+    },
+    "obligation_graph": {"$ref": "#/$defs/graph"},
+    "dependencies": {"type": "array", "items": {"$ref": "#/$defs/dependency"}}
+  },
+  "$defs": {
+    "graph": {
+      "type": "object", "additionalProperties": false,
+      "required": ["coverage_status", "completeness_note", "nodes", "edges"],
+      "properties": {
+        "coverage_status": {"enum": ["INITIAL", "REVIEWED", "COMPLETE"]},
+        "completeness_note": {"type": "string", "minLength": 1},
+        "nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/obligation"}},
+        "edges": {"type": "array", "items": {"$ref": "#/$defs/edge"}}
+      }
+    },
+    "obligation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "type", "statement", "required", "evidence_types", "source_refs"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+        "type": {"enum": ["definition", "lemma", "construction", "reduction", "parameter_check", "theorem", "scope_check"]},
+        "statement": {"type": "string", "minLength": 1},
+        "required": {"type": "boolean"},
+        "evidence_types": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["formal_kernel", "structural_alignment", "symbolic_analytic", "construction_witness", "complexity_reduction", "asymptotic_parameter", "probability_measure", "interval_numeric", "solver_falsification"]}},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "edge": {"type": "object", "additionalProperties": false, "required": ["from", "to"], "properties": {"from": {"type": "string"}, "to": {"type": "string"}}},
+    "dependency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "source", "version", "statement", "audit_status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "source": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "audit_status": {"enum": ["UNVERIFIED", "PARTIAL", "VERIFIED"]}
+      }
+    }
+  }
+}
+

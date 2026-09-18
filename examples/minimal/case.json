@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1",
+  "case_id": "minimal-exact-arithmetic",
+  "claim": "claim.json",
+  "pipeline": "pipeline.json",
+  "source_lock": "sources.lock.json",
+  "plugin_manifests": ["plugins/manifest.json"],
+  "test_e2e": "test_e2e.json"
+}
